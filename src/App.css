@@ -47,24 +47,109 @@ body {
   font-weight: 800;
   width: fit-content;
   padding: 5px 10px;
-  box-sizing: border-box;
   border: none !important;
   outline: none !important;
   margin: 5px;
 }
 
 .filter-ops:focus {
-  background-color: rgb(247 248 253);
+  background-color: rgb(98 118 219) !important;
   color: white;
+}
+
+.filter-ops:hover {
+  cursor: pointer;
 }
 
 .light {
   background-color: rgb(255 255 255);
-  border-radius: 0.6em;
+  border: 1px solid rgb(249 250 254);
+  box-shadow: 0px 0px 1px 0px rgb(115 115 115 / 10%);
+}
+
+.dark {
+  background-color: rgb(54 62 104);
+  box-shadow: 0px 0px 1px 0px rgb(115 115 115 / 10%);
+  color: white;
+}
+
+.small {
+  width: 250px;
   padding: 20px 15px;
   box-sizing: border-box;
 }
 
-.small {
-  width: 200px;
+.medium {
+  width: 700px;
+  padding: 20px 15px;
+  box-sizing: border-box;
+  margin: 15px;
+  margin-top: 0 !important;
+}
+.smooth {
+  border-radius: 0.6em;
+}
+
+.roadmap .bullet {
+  display: list-item;
+  list-style: disc inside;
+  padding: 0 0 0 14px;
+  margin: 0;
+  font-size: 30px;
+}
+
+.roadmap td:last-child {
+  text-align: center;
+}
+/* .roadmap td:first-child {
+  text-align: left;
+} */
+.roadmap tr {
+  line-height: 2em;
+}
+
+.colorful {
+  background: linear-gradient(
+      217deg,
+      rgb(207 42 120),
+      rgb(121 38 131 / 0%) 70.71%
+    ),
+    linear-gradient(127deg, rgb(79 127 245), rgba(0, 255, 0, 0) 70.71%),
+    linear-gradient(336deg, rgb(234 155 140), rgb(168 58 237) 70.71%),
+    linear-gradient(3331deg, rgb(168 58 237), rgba(0, 0, 255, 0) 70.71%);
+  /* box-shadow: 0px 0px 3px 0px rgb(115 115 115 / 40%); */
+  color: white;
+}
+
+.main-container {
+  margin: 50px 300px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 15px;
+  grid-auto-rows: auto;
+  grid-template-areas:
+    "a d"
+    "b d"
+    "c d"
+    ". d";
+}
+
+.items-header {
+  display: inline-flex;
+  height: 65px;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.btn {
+  background-color: rgb(176 29 238);
+  color: white;
+  outline: none;
+  border: none;
+  padding: 10px;
+}
+
+.btn:hover {
+  background-color: rgb(202 137 229);
+  cursor: pointer;
 }
