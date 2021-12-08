@@ -2,10 +2,10 @@ import React from "react";
 
 function Roadmap(props) {
   return (
-    <table class="roadmap">
+    <table className="roadmap">
       <tbody>
         <tr>
-          <td colspan="2" style={{ "padding-left": "12px" }}>
+          <td colSpan="2" style={{ paddingLeft: "12px" }}>
             <b>Roadmap</b>
           </td>
           <td>
@@ -13,8 +13,8 @@ function Roadmap(props) {
           </td>
         </tr>
         {props.data.map((d) => (
-          <tr id={d.id}>
-            <td class="bullet" style={{ color: d.color }}></td>
+          <tr id={d.id} key={d.id}>
+            <td className="bullet" style={{ color: d.color }}></td>
             <td>{d.title}</td>
             <td>{d.count}</td>
           </tr>

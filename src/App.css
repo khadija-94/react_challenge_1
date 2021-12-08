@@ -46,13 +46,14 @@ body {
   justify-items: center;
   font-weight: 800;
   width: fit-content;
+  font-size: 14px;
   padding: 5px 10px;
   border: none !important;
   outline: none !important;
   margin: 5px;
 }
 
-.filter-ops:focus {
+.clicked-filter-ops {
   background-color: rgb(98 118 219) !important;
   color: white;
 }
@@ -81,7 +82,7 @@ body {
 
 .medium {
   width: 700px;
-  padding: 20px 15px;
+  padding: 20px 30px;
   box-sizing: border-box;
   margin: 15px;
   margin-top: 0 !important;
@@ -152,4 +153,47 @@ body {
 .btn:hover {
   background-color: rgb(202 137 229);
   cursor: pointer;
+}
+
+.item {
+  align-items: center;
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  box-sizing: border-box;
+  grid-auto-rows: auto;
+  grid-template-areas:
+    ". bb bb bb bb bb bb ."
+    "aa cc cc cc cc cc cc ee"
+    ". dd dd dd dd dd dd .";
+}
+
+.count {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: rgb(244 244 254);
+  width: 35px;
+  padding: 10px 0;
+  font-weight: bold;
+  font-size: 12px;
+}
+
+.text-purple {
+  color: rgb(125 129 197);
+}
+
+.comments {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+  color: rgb(67 69 87);
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.desc {
+  color: #555;
+  font-size: 15px;
+  font-style: italic;
 }

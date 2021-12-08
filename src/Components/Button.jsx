@@ -1,14 +1,10 @@
-import { library } from "@fortawesome/fontawesome-svg-core";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { fab } from "@fortawesome/free-brands-svg-icons";
-import { faPlus } from "@fortawesome/free-solid-svg-icons";
-library.add(fab, faPlus);
+import { FaPlus } from "react-icons/fa";
 
 function Button(props) {
   return (
     <button className={props.className}>
-      {props.icon ? (
-        <FontAwesomeIcon style={{ paddingRight: "5px" }} icon={faPlus} />
+      {props.icon === "+" ? (
+        <FaPlus style={{ paddingRight: "5px", height: "0.8em" }} />
       ) : (
         ""
       )}

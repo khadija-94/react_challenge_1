@@ -8,7 +8,9 @@ import ItemsHeader from "./ItemsHeader";
 class MainPage extends Component {
   constructor(props) {
     super(props);
+
     this.state = {
+      filterResult: [],
       filter_ops: ["All", "UI", "UX", "Enhancement", "Bug", "Feature"],
       roadmap_leads: [
         { id: "e1", title: "Planned", color: "rgb(232 160 147)", count: 2 },
@@ -66,15 +68,61 @@ class MainPage extends Component {
         },
       ],
     };
-  }
 
+    this.filterOps = this.filterOps.bind(this);
+  }
+  filterOps(e) {
+    e.preventDefault();
+    e.target.classList.toggle("clicked-filter-ops");
+    var filter_option = e.target.value;
+    // var c = document.getElementsByClassName("clicked-filter-ops");
+    var results = this.state.suggestions;
+
+    if (filter_option !== "") {
+      if (filter_option === "all") {
+        this.setState({
+          filterResult: results,
+        });
+      } else {
+        results = this.state.suggestions.filter((sug) => {
+          console.log(
+            Object.keys(sug).find((key) => sug[key] === filter_option)
+          );
+          return Object.keys(sug).find(
+            (key) => sug[key] === filter_option && key === "type"
+          );
+        });
+        if (results) {
+          this.setState({
+            filterResult: results,
+          });
+        }
+      }
+    }
+    if (results.length === 0) {
+      this.setState({
+        filterResult: [0],
+      });
+    }
+  }
   render() {
+    let filteredSuggestions = [];
+
     return (
       <div className="main-container">
-        <MainCorner style={{ gridArea: "a" }} />
+        <MainCorner
+          style={{ gridArea: "a" }}
+          main_title="Frontend Mentor"
+          sub_title="Feedback Board"
+        />
         <div className="light small smooth" style={{ gridArea: "b" }}>
           {this.state.filter_ops.map((f, i) => (
-            <FilterOps className="filter-ops" title={f} key={i} />
+            <FilterOps
+              className="filter-ops"
+              title={f}
+              key={i}
+              onClick={this.filterOps}
+            />
           ))}
         </div>
 
@@ -82,18 +130,45 @@ class MainPage extends Component {
           <Roadmap data={this.state.roadmap_leads} />
         </div>
         <div style={{ gridArea: "d" }}>
-          <ItemsHeader />
-          {this.state.suggestions.map((s) => (
-            <ItemContainer
-              id={s.id}
-              title={s.title}
-              desc={s.desc}
-              count={s.count}
-              commentsCount={s.commentsCount}
-              type={s.type}
-              className="light smooth medium"
-            />
-          ))}
+          <ItemsHeader
+            items_no={this.state.suggestions.length}
+            items_title="Suggesstions"
+            sort_option_title="Most Upvotes"
+            sort_by="asc"
+          />
+          <div className="items">
+            {this.state.filterResult.length !== 0 ? (
+              this.state.filterResult[0] === 0 ? (
+                <div className="light smooth medium item"> No results! </div>
+              ) : (
+                this.state.filterResult.map((s) => (
+                  <ItemContainer
+                    id={s.id}
+                    title={s.title}
+                    desc={s.desc}
+                    count={s.count}
+                    commentsCount={s.commentsCount}
+                    type={s.type}
+                    key={s.id}
+                    className="light smooth medium item"
+                  />
+                ))
+              )
+            ) : (
+              this.state.suggestions.map((s) => (
+                <ItemContainer
+                  id={s.id}
+                  title={s.title}
+                  desc={s.desc}
+                  count={s.count}
+                  commentsCount={s.commentsCount}
+                  type={s.type}
+                  key={s.id}
+                  className="light smooth medium item"
+                />
+              ))
+            )}
+          </div>
         </div>
       </div>
     );

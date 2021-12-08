@@ -1,22 +1,16 @@
 import Button from "./Button";
-import { library } from "@fortawesome/fontawesome-svg-core";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { fab } from "@fortawesome/free-brands-svg-icons";
-import { faLightbulb } from "@fortawesome/free-solid-svg-icons";
-
-library.add(fab, faLightbulb);
+import { FaAngleDown, FaAngleUp, FaLightbulb } from "react-icons/fa";
 
 function ItemsHeader(props) {
   return (
     <div className="items-header dark smooth medium">
-      <FontAwesomeIcon icon={faLightbulb} />
-      <h3>6 Suggestions</h3>
-      <p>Sort by:</p>
-      <i class="fas fa-sort-down"></i>
-      <FontAwesomeIcon icon="coffee" />
-
-      <b>Most Upvotes</b>
-      <img />
+      <FaLightbulb />
+      <h3>
+        {props.items_no} {props.items_title}
+      </h3>
+      {props.sort_by ? <p>Sort by:</p> : ""}
+      <b>{props.sort_option_title}</b>
+      {props.sort_by === "asc" ? <FaAngleDown /> : <FaAngleUp />}
       <Button label="Add Feedback" icon="+" className="btn smooth" />
     </div>
   );
